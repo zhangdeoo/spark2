@@ -3,18 +3,18 @@ package com.pp
 /**
   * Created by Administrator on 2018/5/25.
   */
-import org.apache.spark.sql.SparkSession
-import org.apache.spark.sql.CarbonSession._
-import org.apache.spark.SparkConf
-import org.apache.spark.SparkContext
-import org.apache.spark.SparkContext._
+//import org.apache.spark.sql.SparkSession
+//import org.apache.spark.sql.CarbonSession._
+//import org.apache.spark.SparkConf
+//import org.apache.spark.SparkContext
+//import org.apache.spark.SparkContext._
 object sp {
   def main(args: Array[String]): Unit = {
-    val conf = new SparkConf().setAppName("123")
-    val sc = new SparkContext(conf)
-    val carbon=SparkSession .builder().appName("Spark SQL basic example").getOrCreateCarbonSession("hdfs://192.168.40.130:9000/data/carbondata/pt/order_detail.csv")
-    import carbon.implicits._
-    carbon.read.csv("hdfs://192.168.40.130:9000/data/carbondata/pt/order_detail.csv").show()
+    //    val conf = new SparkConf().setAppName("123")
+    //    val sc = new SparkContext(conf)
+    //    val carbon=SparkSession .builder().appName("Spark SQL basic example").getOrCreateCarbonSession("hdfs://192.168.40.130:9000/data/carbondata/pt/order_detail.csv")
+    //    import carbon.implicits._
+    //    carbon.read.csv("hdfs://192.168.40.130:9000/data/carbondata/pt/order_detail.csv").show()
 
 //    val carbon = spark.builder().config(sc.getConf).getOrCreateCarbonSession("hdfs://192.168.40.130:9000/data/carbondata/pt/order_detail.csv")
 //    carbon.sql("CREATE TABLE " +
