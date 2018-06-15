@@ -2,11 +2,9 @@ package kafkav10;
 
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
-
 import kafka.javaapi.producer.Producer;
 import kafka.producer.KeyedMessage;
 import kafka.producer.ProducerConfig;
-import kafka.serializer.StringEncoder;
 
 public class kafkaProducer extends Thread {
     private String topic;
@@ -18,16 +16,22 @@ public class kafkaProducer extends Thread {
 
     public static void main(String[] args) {
 
-        new kafkaProducer("test").start();
+        new kafkaProducer(config.topic).start();
     }
 
     @Override
     public void run() {
-        Producer producer = createProducer();
+//        Producer producer = createProducer();
+        Properties props = new Properties();
+        props.put("serializer.class", "kafka.serializer.StringEncoder");
+        props.put("metadata.broker.list", "192.168.40.130:9092,192.168.40.131:9092,192.168.40.132:9092");
+        props.put("partitioner.class", "kafkav10.CustomerPartitioner");
+        Producer<String, String> producer = new Producer<String, String>(new ProducerConfig(props));
         int i = 0;
         while (true) {
-            producer.send(new KeyedMessage<Integer, String>(topic, "message:" + i++));
-            System.out.println("发送成功！");
+//            new ProducerRecord<String, String>("my-topic", null, System.currentTimeMillis(), "key", "value");
+            producer.send(new KeyedMessage<String, String>("testtimepartion3", "message:" + i++));
+            System.out.println(i+"、发送成功！");
             try {
                 TimeUnit.SECONDS.sleep(1);
             } catch (InterruptedException e) {
@@ -38,9 +42,13 @@ public class kafkaProducer extends Thread {
 
     private Producer createProducer() {
         Properties properties = new Properties();
-        properties.put("zk.connect", "192.168.40.130:2181,192.168.40.131:2181,192.168.40.132:2181");
-        properties.put("serializer.class", StringEncoder.class.getName());
+//        properties.put("zk.connect", config.zookeeperConnect);
+//        properties.put("serializer.class", StringEncoder.class.getName());
+//        properties.put("metadata.broker.list", config.kafkaBrokers);
+//        properties.put("partitioner.class", "kafkav10.CustomerPartitioner");
+        properties.put("serializer.class", "kafka.serializer.StringEncoder");
         properties.put("metadata.broker.list", "192.168.40.130:9092,192.168.40.131:9092,192.168.40.132:9092");
+        properties.put("partitioner.class", "kafkav10.CustomerPartitioner");
         return new Producer<Integer, String>(new ProducerConfig(properties));
     }
 }

@@ -30,7 +30,7 @@ object data_frame_function_split {
     df.withColumn("p_c", split($"province_city", "_"))
       .withColumn("province", substring_index($"province_city", "_", 1)) //1代表从左边数要1个
       .withColumn("city", substring_index($"province_city", "_", -1)) //-1从右边数要1个
-      .withColumn("region", substring_index($"province_city", "_", -2)) //-2从右边数要2个
+      .withColumn("region", substring_index(substring_index($"province_city", "_", -2),"_",-1)) //-2从右边数要2个
       .show()
 
   }

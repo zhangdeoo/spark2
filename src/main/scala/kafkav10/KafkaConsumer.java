@@ -9,17 +9,18 @@ import kafka.consumer.ConsumerConfig;
 import kafka.consumer.ConsumerIterator;
 import kafka.consumer.KafkaStream;
 import kafka.javaapi.consumer.ConsumerConnector;
+import kafka.message.MessageAndMetadata;
 import kafka.serializer.StringDecoder;
 import kafka.utils.VerifiableProperties;
 
 public class KafkaConsumer {
     private final ConsumerConnector consumer;
-    String topic = "test";
+    String topic = config.topic;
 
     private KafkaConsumer() {
         Properties props = new Properties();
         //zookeeper 配置
-        props.put("zookeeper.connect", "192.168.40.130:2181");
+        props.put("zookeeper.connect", config.zookeeperConnect);
 
         //group 代表一个消费组
         props.put("group.id", "jd-group");
@@ -38,6 +39,7 @@ public class KafkaConsumer {
     }
 
     public static void main(String[] args) {
+
         new KafkaConsumer().consume();
     }
 

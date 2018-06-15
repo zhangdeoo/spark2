@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://E:\01_workspcace\02_IDEAworkspace\spark2\kafka_v01011\kafka_v01011.iml" filepath="E:\01_workspcace\02_IDEAworkspace\spark2\kafka_v01011\kafka_v01011.iml" />
-      <module fileurl="file://$PROJECT_DIR$/spark2.iml" filepath="$PROJECT_DIR$/spark2.iml" />
-    </modules>
-  </component>
-</project>
