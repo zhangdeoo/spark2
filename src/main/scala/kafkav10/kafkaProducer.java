@@ -25,12 +25,12 @@ public class kafkaProducer extends Thread {
         Properties props = new Properties();
         props.put("serializer.class", "kafka.serializer.StringEncoder");
         props.put("metadata.broker.list", "192.168.40.130:9092,192.168.40.131:9092,192.168.40.132:9092");
-        props.put("partitioner.class", "kafkav10.CustomerPartitioner");
+//        props.put("partitioner.class", "kafkav10.CustomerPartitioner");
         Producer<String, String> producer = new Producer<String, String>(new ProducerConfig(props));
         int i = 0;
         while (true) {
 //            new ProducerRecord<String, String>("my-topic", null, System.currentTimeMillis(), "key", "value");
-            producer.send(new KeyedMessage<String, String>("testtimepartion3", "message:" + i++));
+            producer.send(new KeyedMessage<String, String>("m8", "message:" + i++));
             System.out.println(i+"、发送成功！");
             try {
                 TimeUnit.SECONDS.sleep(1);
