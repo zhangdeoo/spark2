@@ -39,8 +39,6 @@ public class SimpleZkClient {
     public void testExist() throws Exception{
         Stat stat = zkClient.exists("/eclipse", false);
         System.out.println(stat==null?"not exist":"exist");
-
-
     }
     public static void main(String[] args) throws Exception {
         SimpleZkClient siz=new SimpleZkClient();
