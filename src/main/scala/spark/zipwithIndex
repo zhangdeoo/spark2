@@ -1,0 +1,24 @@
+scala> val days = Array("Sunday", "Monday", "Tuesday", "Wednesday","Thursday", "Friday", "Saturday")
+days: Array[String] = Array(Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday)
+
+scala> days.zipWithIndex.foreach{case(day,count) => println(s"$count is $day")}
+0 is Sunday
+1 is Monday
+2 is Tuesday
+3 is Wednesday
+4 is Thursday
+5 is Friday
+6 is Saturday
+
+
+scala> for((day,count) <- days.zip(Stream from 1)) {
+     |   println(s"$count is $day")
+     | }
+1 is Sunday
+2 is Monday
+3 is Tuesday
+4 is Wednesday
+5 is Thursday
+6 is Friday
+7 is Saturday
+Discussion
